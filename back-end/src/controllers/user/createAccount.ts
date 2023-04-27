@@ -32,9 +32,11 @@ export const signup = async(req:Request, res:Response) =>{
         const hashedPassword = saltAndHash(pass)
         try{
             await createUser(username,hashedPassword)
+            logger.info("New user created");
             res.status(201).json({"message":"Account created successfully"})
         }catch(err){
             //TODO Log error
+            err_logger.error("Error 500 at user creation");
             res.status(500).json({"error":true,"message":"An error occured while creating user"})
         }
     }    
@@ -55,9 +57,11 @@ export const addUserInfo_Cont = async(req:Request, res:Response) => {
             try{
                 await addUserInfo(Number(acc_id),firstname,lastname,email_address,phone_no,address)
                 //TODO Log user creation
+                logger.info("New user details entered");
                 res.status(201).json({"message":"Account created successfully"})
             }catch(err){
                 //TODO Log error
+                err_logger.error("Error 500 at new user details entry");
                 res.status(500).json({"error":true,"message":"An error occured while creating user"})
             }
             })
