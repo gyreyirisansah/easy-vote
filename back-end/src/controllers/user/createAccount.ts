@@ -49,16 +49,16 @@ export const addUserInfo_Cont = async(req:Request, res:Response) => {
         isAuthenticated(req,res,async() =>{
             const validatedData = matchedData(req)
             const {firstname,lastname,email_address,phone_no,address} = validatedData;
-            const token =  req.get("Authorization");
+            const token =  req.get("Authorization")?.split(" ")[1];
             const user = getAuthenticatedUserDetails(token||"",process.env.LOGIN_TOKEN_SECRET_KEY||"")
-            const acc_id = user?.acc_id;
+            const acc_id =  user?.acc_id;
             try{
                 await addUserInfo(Number(acc_id),firstname,lastname,email_address,phone_no,address)
                 //TODO Log user creation
                 res.status(201).json({"message":"Account created successfully"})
             }catch(err){
                 //TODO Log error
-                res.status(500).json({"error":true,"message":"An error occured while creating user"})
+                res.status(500).json({"error":true,"message":"An error occured while adding user info"})
             }
             })
         

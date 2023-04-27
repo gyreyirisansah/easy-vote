@@ -21,8 +21,8 @@ CREATE TABLE Users (
     firstname TINYTEXT NOT NULL,
     lastname TINYTEXT NOT NULL,
     email_address TEXT NOT NULL,
-    phone_no
-    address TEXT NOT NULL,
+    phone_no TINYTEXT NOT NULL,
+    address TEXT NOT NULL
 );
 
 CREATE TABLE Polls (
@@ -42,7 +42,7 @@ CREATE TABLE Options (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     poll_id INTEGER NOT NULL REFERENCES Polls(id),
     option_name TEXT NOT NULL,
-    option_image_url: TEXT NOT NULL 
+    option_image_url TEXT NOT NULL 
 );
 
 
@@ -50,8 +50,8 @@ CREATE TABLE Options (
 CREATE TRIGGER forbid_votes_update BEFORE UPDATE ON Votes
 BEGIN
 SELECT CASE 
-WHEN (OLD.id <> NEW.id  OR OLD.poll_id. <> NEW.poll_id OR OLD.user <> NEW.user  OR OLD.vote. <> NEW.vote OR OLD.mac. <> NEW.mac )
-    THEN raise(abort,"MAC cannot be modified")
+WHEN (OLD.id <> NEW.id  OR OLD.poll_id <> NEW.poll_id OR OLD.user <> NEW.user  OR OLD.vote <> NEW.vote OR OLD.mac <> NEW.mac )
+    THEN raise(abort,"Votes cannot be modified")
 END;
 END;
 `

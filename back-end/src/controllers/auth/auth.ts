@@ -15,7 +15,7 @@ export const loginValidator = [
 
 
 export const isAuthenticated = async(req:Request,res:Response, success:Function) =>{
-    const token =  req.get("Authorization");
+    const token =  req.get("Authorization")?.split(" ")[1]
     const result = validateToken(token||"", process.env.LOGIN_TOKEN_SECRET_KEY||"")
     if(!result){
         //TODO: Log error to log file

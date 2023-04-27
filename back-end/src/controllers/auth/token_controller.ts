@@ -22,7 +22,7 @@ export const assignToken = (username:string,userId:number) => {
 
 const getToken =(payload:object, secret:string,options?:object) =>{
     if(!options){
-        options = {expiresIn: 600}
+        options = {expiresIn: '10m'}
         return jwt.sign(payload,secret,options)
     }
 }
@@ -62,7 +62,7 @@ export function getAuthenticatedUserDetails(token: string, secret: string): Auth
     return null;
   }
   return {
-    acc_id: payload.sub as string,
+    acc_id:     payload.sub as string,
     user: payload.user as string,
   };
 }
