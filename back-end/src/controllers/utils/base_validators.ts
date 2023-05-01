@@ -1,4 +1,5 @@
 import {check} from 'express-validator';
+import { title } from 'process';
 
 export const baseNameValidator =(attr:string) =>{
     return [
@@ -14,13 +15,14 @@ export const baseNameValidator =(attr:string) =>{
 }
 
 export const baseAlphaNumeric = (attr:string) =>{
+    const titleRegex = /^[a-zA-Z0-9_\- ]+$/;
     return[
         check(attr)
         .trim()
         .not().isEmpty()
         .withMessage(attr+" can not be null")
         .escape()
-        .isAlphanumeric()
+        .matches(titleRegex)
         .withMessage("Invalid "+attr)
     ]
 }
@@ -49,6 +51,8 @@ export const basePhoneNo = (attr:string) =>{
     ]
 }
  
+
+
 
 export const baseNormalText = (attr:string) =>{
     return [
@@ -103,10 +107,8 @@ export const localPathDir = (attr:string) => {
     return [
         check(attr)
         .trim()
-        .not()
-        .isEmpty()
-        .withMessage('Path directory cannot be empty')
-        .matches(/^[A-Za-z]:\\(?:[A-Za-z0-9]+\\)*[A-Za-z0-9]+$/)
+        .optional({nullable:true})
+        .matches(/^[A-Za-z]:\\(?:[A-Za-z0-9]+\\)*[A-Za-z0-9]+\.[a-zA-Z]+$/)
         .withMessage('Invalid path directory. Must be in the format "C:\\path\\to\\directory"')
         .escape()
     ];

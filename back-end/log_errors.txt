@@ -1,0 +1,73 @@
+[2023-04-27T00:27:41.361] [ERROR] errors - login unauthorized
+[2023-04-27T00:28:12.548] [ERROR] errors - Error 500 at new user details entry
+[2023-04-29T22:36:26.893] [ERROR] errors - Incorrect login details
+[2023-04-29T22:39:43.270] [ERROR] errors - login unauthorized
+[2023-04-29T22:41:02.584] [ERROR] errors - Error 500 at new user details entry
+[2023-04-29T22:43:40.032] [ERROR] errors - Error 500 at new user details entry
+[2023-04-29T22:44:42.448] [ERROR] errors - Error 500 at new user details entry
+[2023-04-29T23:50:34.525] [ERROR] errors - login unauthorized
+[2023-04-29T23:51:24.754] [ERROR] errors - Error 500 at new user details entry
+[2023-04-29T23:53:44.541] [ERROR] errors - login unauthorized
+[2023-04-30T00:01:38.617] [ERROR] errors - login unauthorized
+[2023-04-30T00:01:41.820] [ERROR] errors - login unauthorized
+[2023-04-30T00:01:50.373] [ERROR] errors - login unauthorized
+[2023-04-30T00:02:10.293] [ERROR] errors - login unauthorized
+[2023-04-30T00:02:14.730] [ERROR] errors - login unauthorized
+[2023-04-30T00:13:16.670] [ERROR] errors - login unauthorized
+[2023-04-30T00:40:01.726] [ERROR] errors - login unauthorized
+[2023-04-30T00:51:29.985] [ERROR] errors - login unauthorized
+[2023-04-30T01:03:51.556] [ERROR] errors - login unauthorized
+[2023-04-30T01:18:30.336] [ERROR] errors - login unauthorized
+[2023-04-30T01:31:37.402] [ERROR] errors - login unauthorized
+[2023-04-30T01:39:57.365] [ERROR] errors - login unauthorized
+[2023-04-30T01:41:24.431] [ERROR] errors - login unauthorized
+[2023-04-30T01:41:56.383] [ERROR] errors - Error in Vote Count: Error: SQLITE_ERROR: ambiguous column name: poll_id
+[2023-04-30T01:42:08.180] [ERROR] errors - Error in Vote Count: Error: SQLITE_ERROR: ambiguous column name: poll_id
+[2023-04-30T01:42:53.620] [ERROR] errors - Error in Vote Count: Error: SQLITE_ERROR: ambiguous column name: poll_id
+[2023-04-30T01:43:24.915] [ERROR] errors - Error in Vote Count: Error: SQLITE_ERROR: ambiguous column name: poll_id
+[2023-04-30T01:44:24.217] [ERROR] errors - Error in Vote Count: Error: SQLITE_ERROR: ambiguous column name: poll_id
+[2023-04-30T01:45:25.041] [ERROR] errors - Error in Vote Count: Error: SQLITE_ERROR: ambiguous column name: poll_id
+[2023-04-30T19:59:37.857] [ERROR] errors - login unauthorized
+[2023-04-30T20:01:26.467] [ERROR] errors - Error in Vote Count: TypeError: Cannot read properties of undefined (reading 'title')
+[2023-04-30T20:03:39.820] [ERROR] errors - Error in Vote Count: TypeError: Cannot read properties of undefined (reading 'title')
+[2023-04-30T20:10:10.496] [ERROR] errors - login unauthorized
+[2023-04-30T20:18:02.958] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:18:06.648] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:18:06.648] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:18:47.154] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:18:47.154] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:18:47.154] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:20:05.702] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:20:05.703] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:20:05.703] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:20:05.703] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:20:17.661] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:20:17.662] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:20:17.662] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:20:17.662] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:20:21.287] [ERROR] errors - login unauthorized
+[2023-04-30T20:20:23.158] [ERROR] errors - login unauthorized
+[2023-04-30T20:21:07.134] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:21:07.134] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:21:07.134] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:21:07.134] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:24:25.342] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:24:42.270] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:38:51.939] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:38:58.147] [ERROR] errors - Could not decrypt message, Cyphertext might have changed.
+[2023-04-30T20:39:16.676] [ERROR] errors - login unauthorized
+[2023-04-30T21:20:50.404] [ERROR] errors - Incorrect login details
+[2023-04-30T21:20:56.256] [ERROR] errors - Incorrect login details
+[2023-04-30T21:24:28.838] [ERROR] errors - Incorrect login details
+[2023-04-30T21:52:00.056] [ERROR] errors - login unauthorized
+[2023-04-30T21:55:06.015] [ERROR] errors - login unauthorized
+[2023-04-30T21:56:45.750] [ERROR] errors - login unauthorized
+[2023-04-30T22:08:08.119] [ERROR] errors - Incorrect login details
+[2023-04-30T22:09:37.138] [ERROR] errors - Incorrect login details
+[2023-04-30T22:10:29.389] [ERROR] errors - Error 500 at new user details entry
+[2023-04-30T22:12:31.972] [ERROR] errors - login unauthorized
+[2023-04-30T22:12:56.450] [ERROR] errors - login unauthorized
+[2023-04-30T22:13:23.537] [ERROR] errors - login unauthorized
+[2023-04-30T22:33:33.307] [ERROR] errors - login unauthorized
+[2023-04-30T23:03:11.303] [ERROR] errors - login unauthorized
+[2023-04-30T23:03:28.544] [ERROR] errors - login unauthorized

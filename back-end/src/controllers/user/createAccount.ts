@@ -3,7 +3,7 @@ import {createUser} from "../../db/user/userAccount"
 import { addUserInfo } from "../../db/user/user";
 import {saltAndHash} from "../auth/bcrypt_controller"
 import { matchedData,validationResult } from 'express-validator';
-import {getAuthenticatedUserDetails} from "../auth/token_controller"
+import {getAuthenticatedUserDetails,AuthenticatedUser} from "../auth/token_controller"
 
 
 import { baseAddress,baseEmail,basePhoneNo,baseNameValidator } from "../utils/base_validators";
@@ -48,25 +48,23 @@ export const addUserInfo_Cont = async(req:Request, res:Response) => {
     if(!errors.isEmpty()){
         res.status(400).json(errors.array());
     }else{
-        isAuthenticated(req,res,async() =>{
+        await isAuthenticated(req,res,async() =>{
             const validatedData = matchedData(req)
             const {firstname,lastname,email_address,phone_no,address} = validatedData;
             const token =  req.get("Authorization")?.split(" ")[1];
-            const user = getAuthenticatedUserDetails(token||"",process.env.LOGIN_TOKEN_SECRET_KEY||"")
-            const acc_id =  user?.acc_id;
+            const user:AuthenticatedUser|null = getAuthenticatedUserDetails(token||"",process.env.LOGIN_TOKEN_SECRET_KEY||"")
+            let acc_id = 0
+            if (user){acc_id =  user.acc_id;}
+            
             try{
-                await addUserInfo(Number(acc_id),firstname,lastname,email_address,phone_no,address)
+                await addUserInfo(acc_id,firstname,lastname,email_address,phone_no,address)
                 //TODO Log user creation
                 logger.info("New user details entered");
                 res.status(201).json({"message":"Account created successfully"})
             }catch(err){
                 //TODO Log error
-<<<<<<< HEAD
-                res.status(500).json({"error":true,"message":"An error occured while adding user info"})
-=======
                 err_logger.error("Error 500 at new user details entry");
                 res.status(500).json({"error":true,"message":"An error occured while creating user"})
->>>>>>> da2166adc4e3581961d3e7bf6a72e78da54c2567
             }
             })
         

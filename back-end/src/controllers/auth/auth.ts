@@ -1,8 +1,8 @@
 import {Request, Response} from 'express'
-import {validateToken, assignToken} from "./token_controller"
+import {validateToken, assignToken, getAuthenticatedUserDetails,AuthenticatedUser} from "./token_controller"
 
 
-import {getUserId,getUserPassHash} from "../../db/user/userAccount"
+import {getUserId,getUserPassHash,isAdmin} from "../../db/user/userAccount"
 import {validatePassword} from "./bcrypt_controller"
 import { matchedData,validationResult } from 'express-validator';
 
@@ -31,6 +31,24 @@ export const isAuthenticated = async(req:Request,res:Response, success:Function)
     }
 }
 
+export const isAuthenticatedAndAdmin = async(req:Request, res:Response, success:Function) =>{
+    await isAuthenticated(req,res, async() =>{
+        const token =  req.get("Authorization")?.split(" ")[1];
+        const user:AuthenticatedUser|null = getAuthenticatedUserDetails(token||"",process.env.LOGIN_TOKEN_SECRET_KEY||"")
+        
+        let acc_id = 0
+        if (user){acc_id =  user.acc_id;}
+
+        if(await isAdmin(acc_id)){
+            //TODO login as an admin logger
+            return success()
+        }else{
+            //TOD add acecessing to admin failed logger
+            res.status(403).json({message:"Unauthorized"})
+        }
+    })
+}
+
 export const login = async(req:Request, res:Response) =>{
     const errors = validationResult(req)
     if(!errors.isEmpty()){
@@ -38,7 +56,8 @@ export const login = async(req:Request, res:Response) =>{
     }else{
         const validatedData = matchedData(req)
         const {pass,username} = validatedData;
-        const hashedPassword = await getUserPassHash(username)
+        try{
+            const hashedPassword = await getUserPassHash(username)
         if(await validatePassword(pass,hashedPassword)){
             const userId = await getUserId(username);
             const token = assignToken(username,userId);
@@ -48,6 +67,11 @@ export const login = async(req:Request, res:Response) =>{
             err_logger.error("Incorrect login details");
             res.status(401).json({error:"Authentication failed"});
         }
+        }catch(err){
+            err_logger.error("Incorrect login details");
+            res.status(401).json({error:"Authentication failed"});
+        }
+        
     }
     
     

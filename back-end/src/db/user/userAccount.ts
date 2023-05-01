@@ -28,7 +28,7 @@ export const getUserId = async (username: string): Promise<number> => {
         ":username": username,
     });
 
-    return result;
+    return result.id;
 }
 
 export const getUserPassHash = async (username: string): Promise<string> => {
@@ -61,6 +61,16 @@ export const createUser = async (username: string, hash: string): Promise<void> 
         ":hash": hash,
     });
 }
+
+export const isAdmin = async (acc_id: number): Promise<Boolean> => {
+    let db = await connect();
+
+    let result = await db.get(`
+    SELECT COUNT(*) FROM Admins WHERE acc_id=?`,[acc_id]);
+
+    return Promise.resolve(result['COUNT(*)'] > 0);
+}
+
 
 export const noAccounts = async (username:string): Promise<boolean> => {
     let db = await connect();

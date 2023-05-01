@@ -43,7 +43,7 @@ const getToken =(payload:object, secret:string,options?:object) =>{
   
 
 export interface AuthenticatedUser {
-  acc_id: string;
+  acc_id: number;
   user: string;
 }
 
@@ -62,7 +62,7 @@ export function getAuthenticatedUserDetails(token: string, secret: string): Auth
     return null;
   }
   return {
-    acc_id:     payload.sub as string,
+    acc_id:     Number(payload.sub),
     user: payload.user as string,
   };
 }
