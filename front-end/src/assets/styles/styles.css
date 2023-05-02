@@ -16,6 +16,7 @@ body {
   h1{
     padding-top: 10px;
     font-family:'Courier New', Courier, monospace;
+    font-weight:bold;
   }
   .login_container{
     margin: auto;
@@ -31,6 +32,7 @@ body {
     margin-bottom: 5px;
     font-family:'Courier New', Courier, monospace;
     font-size:large;
+    font-weight:bold;
   }
   
   input {
@@ -45,6 +47,7 @@ body {
     color: rgb(20, 19, 19);
     font-family:'Courier New', Courier, monospace;
     font-size:medium;
+    font-weight:bold;
   }
 
   .login_input{
@@ -57,3 +60,15 @@ body {
     padding-top: 15px;
     font-family:'Courier New', Courier, monospace;
   }
+
+ .list{
+  padding-bottom: 5px;
+  border-radius: 5px;
+  font-family:'Courier New', Courier, monospace;
+  font-size: medium;
+  font-weight:bold;
+ }
+
+ .vote_button{
+  font-family:'Courier New', Courier, monospace;
+ }

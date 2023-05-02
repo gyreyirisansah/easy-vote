@@ -78,8 +78,3 @@
 [2023-05-02T02:00:11.463] [ERROR] errors - login unauthorized
 [2023-05-02T02:00:12.758] [ERROR] errors - login unauthorized
 [2023-05-02T02:02:15.361] [ERROR] errors - login unauthorized
-[2023-05-02T03:24:37.968] [ERROR] errors - login unauthorized
-[2023-05-02T03:33:55.475] [ERROR] errors - Incorrect login details
-[2023-05-02T13:33:00.195] [ERROR] errors - login unauthorized
-[2023-05-02T13:43:26.916] [ERROR] errors - login unauthorized
-[2023-05-02T14:49:07.250] [ERROR] errors - login unauthorized

@@ -46,7 +46,7 @@ const LoginForm = ({login}) => {
       
       <div className= 'login_container'>
       <div className='text-center'>
-      <h1>Login</h1>
+      <h1 style={{fontWeight:"bold"}}>Login</h1>
       </div>
       <form onSubmit={formik.handleSubmit} className=''>
       <div>
