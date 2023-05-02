@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import ActivePoll from '../components/ActivePoll';
+import { getActivePolls } from '../redux/poll/pollAction';
+import { connect } from 'react-redux';
+
 
 function Home() {
+
+  // useEffect(() => {
+  //   getActivePolls();
+  // });
+
   return (
     <div>
       <h1>Welcome to the home page!</h1>
-      <p>This page can only be accessed if you're authenticated.</p>
+      <ActivePoll />
     </div>
   );
 }
 
-export default Home;
+// const mapStateToProps = (state) => ({
+//   activePolls: state.poll.activePolls,
+//   user: state.auth.user
+
+// });
+export default Home
+// export default connect(mapStateToProps, { getActivePolls })(Home);

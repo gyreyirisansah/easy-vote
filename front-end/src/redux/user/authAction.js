@@ -4,7 +4,7 @@ import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../constants';
 
 export const login = (userData, navigate) => dispatch => {
     
-  axios.post('/api/auth', userData)
+  axios.post('/auth', userData)
     .then(res => {
       const { token } = res.data;
       const decoded = jwt_decode(token);
