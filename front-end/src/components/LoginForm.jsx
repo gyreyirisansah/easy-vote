@@ -79,8 +79,8 @@ const LoginForm = ({login}) => {
       </div>
       {error ? <div>{error}</div> : null}
       <div className='text-center'>
-        <div className='login_button'>
-      <Button variant="secondary" type="submit" text->Login</Button>
+      <div className='login_button'>
+      <Button variant="secondary" type="submit">Login</Button>
       </div>
       </div>
     </form>
