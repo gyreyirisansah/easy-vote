@@ -3,12 +3,18 @@ import { connect } from 'react-redux';
 import { getActivePolls } from '../redux/poll/pollAction';
 import { ListGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 
-const ActivePolls = ({activePolls,user,activePollTitles, getActivePolls }) => {
+const ActivePolls = ({user,activePollTitles, getActivePolls }) => {
     useEffect(() => {
         console.log("I did run")
         getActivePolls();
       }, [getActivePolls]);
+    
+    const navigate = useNavigate()
+    const handleStartVoting = () => {
+        navigate("/vote");
+    };
 
     console.log("Has length? "+ (activePollTitles && activePollTitles.length > 0))
   return (
@@ -21,7 +27,7 @@ const ActivePolls = ({activePolls,user,activePollTitles, getActivePolls }) => {
             <ListGroup.Item key={poll}>{poll}</ListGroup.Item>
           ))}
         </ListGroup>
-        <Button variant="secondary">Start Voting</Button>
+        <Button variant="secondary" onClick={handleStartVoting}>Start Voting</Button>
         </div>
         
       ) : (
@@ -34,7 +40,6 @@ const ActivePolls = ({activePolls,user,activePollTitles, getActivePolls }) => {
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   activePollTitles: state.poll.activePollTitles,
-  activePolls: state.poll.ActivePolls
 });
 
 export default connect(mapStateToProps, { getActivePolls })(ActivePolls);
