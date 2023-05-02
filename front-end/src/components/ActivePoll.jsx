@@ -14,11 +14,15 @@ const ActivePolls = ({activePolls,user,activePollTitles, getActivePolls }) => {
     <div>
       <h1>Active Polls  {user? "for " + user.user:""}</h1>
       {activePollTitles && activePollTitles.length > 0 ? (
-        <ListGroup>
+        <div>,
+          <ListGroup>
           {activePollTitles.map((poll) => (
             <ListGroup.Item key={poll}>{poll}</ListGroup.Item>
           ))}
         </ListGroup>
+        <Button variant="secondary" text->Start Voting</Button>
+        </div>
+        
       ) : (
         <p>No active polls {user? "for "+user.user:""}.</p>
       )}
