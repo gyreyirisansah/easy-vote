@@ -6,7 +6,7 @@ import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
   return (
-    <div style={{ backgroundColor: 'gray' }}>
+    <div >
       <BrowserRouter>
         <Routes>
           <Route exact path="/login" element={<LoginForm/>} />

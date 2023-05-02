@@ -6,6 +6,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './redux/index';
 import reportWebVitals from "./reportWebVitals";
 import "./assets/styles/styles.css"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 const store = configureStore({
   reducer: rootReducer

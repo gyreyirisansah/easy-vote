@@ -4,6 +4,7 @@ import { login } from '../redux/user/authAction';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 const LoginForm = ({login}) => {
   // const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ const LoginForm = ({login}) => {
 
   const loginSchema = Yup.object().shape({
     username: Yup.string()
-      .required('username is required'),
+      .required('Username is required'),
     password: Yup.string()
       .required('Password is required')
       .min(4, 'Password must be at least 4 characters')
@@ -41,18 +42,25 @@ const LoginForm = ({login}) => {
   // };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <div className='container-sm '>
+      
+      <div className= 'login_container'>
+      <div className='text-center'>
+      <h1>Login</h1>
+      </div>
+      <form onSubmit={formik.handleSubmit} className=''>
       <div>
         <label htmlFor="username">Username:</label>
         <input
           type="username"
           id="username"
           name="username"
+          className="login_input"
           value={formik.values.username}
           onChange={formik.handleChange}
         />
         {formik.touched.username && formik.errors.username ? (
-          <div>{formik.errors.username}</div>
+          <div className={"error"}>{formik.errors.username}</div>
         ) : null}
       </div>
       <div>
@@ -61,16 +69,24 @@ const LoginForm = ({login}) => {
           type="password"
           id="password"
           name="password"
+          className="login_input"
           value={formik.values.password}
           onChange={formik.handleChange}
         />
         {formik.touched.password && formik.errors.password ? (
-          <div>{formik.errors.password}</div>
+          <div className={"error"}>{formik.errors.password}</div>
         ) : null}
       </div>
       {error ? <div>{error}</div> : null}
-      <button type="submit">Login</button>
+      <div className='text-center'>
+        <div className='login_button'>
+      <Button variant="secondary" type="submit" text->Login</Button>
+      </div>
+      </div>
     </form>
+      </div>
+      
+    </div>
   );
 };
 
