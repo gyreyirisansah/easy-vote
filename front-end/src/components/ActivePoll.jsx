@@ -13,15 +13,19 @@ const ActivePolls = ({activePolls,user,activePollTitles, getActivePolls }) => {
     console.log("Has length? "+ (activePollTitles && activePollTitles.length > 0))
   return (
     <div>
-      <h1>Active Polls  {user? "for " + user.user:""}</h1>
+      <h1 style={{fontWeight:"bold"}}>Active Polls  {user? "for " + user.user:""}</h1>
       {activePollTitles && activePollTitles.length > 0 ? (
         <div>,
           <ListGroup>
           {activePollTitles.map((poll) => (
-            <ListGroup.Item key={poll}>{poll}</ListGroup.Item>
+            <div className='list'>
+              <ListGroup.Item key={poll}>{poll}</ListGroup.Item>
+            </div>
           ))}
         </ListGroup>
+        <div className='vote_button'>
         <Button variant="secondary">Start Voting</Button>
+        </div>
         </div>
         
       ) : (
