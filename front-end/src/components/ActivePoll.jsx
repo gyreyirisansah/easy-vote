@@ -23,13 +23,13 @@ const ActivePolls = ({user,activePollTitles, getActivePolls }) => {
       {activePollTitles && activePollTitles.length > 0 ? (
         <div>,
           <ListGroup>
-          {activePollTitles.map((poll) => (
-            <div className='list'>
-              <ListGroup.Item key={poll}>{poll}</ListGroup.Item>
+          {activePollTitles.map((poll,i) => (
+            <div className='list' key={i}>
+              <ListGroup.Item >{poll}</ListGroup.Item>
             </div>
           ))}
         </ListGroup>
-        <Button variant="secondary">Start Voting</Button>
+        <Button variant="secondary" onClick={handleStartVoting}>Start Voting</Button>
         </div>
         
       ) : (
