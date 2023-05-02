@@ -21,7 +21,7 @@ const ActivePolls = ({activePolls,user,activePollTitles, getActivePolls }) => {
             <ListGroup.Item key={poll}>{poll}</ListGroup.Item>
           ))}
         </ListGroup>
-        <Button variant="secondary" text->Start Voting</Button>
+        <Button variant="secondary">Start Voting</Button>
         </div>
         
       ) : (
