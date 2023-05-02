@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getActivePolls } from '../redux/poll/pollAction';
 import { ListGroup } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 const ActivePolls = ({activePolls,user,activePollTitles, getActivePolls }) => {
     useEffect(() => {
