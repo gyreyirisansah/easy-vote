@@ -25,28 +25,31 @@ const Vote = ({activePolls, user, getActivePolls}) => {
   };
 
   return (
-    <>
+    <div className='voteform'>
       {activePolls.polls && Object.values(activePolls.polls).map((poll, i) => (
-        <Card key={i} >
+        //<Card border="primary" style={{ width: '18rem' }} className='vote_align' >
+        <Card key={i} className='vote_card'>
           <Card.Body>
             <Card.Title>{poll.title}</Card.Title>
             <Form>
               {poll.options.map(option => (
-                <div  key={option.option_id} >
+                <div key={option.option_id}>
                 <img src="http://placekitten.com/100/100" />
                 <span className='d-inline'>
+                
                                     <Form.Check
                  
                   inline
                 //   label={option.option_name}
+                
                   type="checkbox"
                   id={`option-${option.option_id}`}
                   value={option.option_id}
                   checked={selectedOptions[poll.id] === option.option_id}
                   onChange={() => handleOptionChange(poll.id, option.option_id)}
                 />
+                
                 </span>
-
                 <span className='d-block'>{option.option_name}</span>
                 </div>
               ))}
@@ -56,9 +59,10 @@ const Vote = ({activePolls, user, getActivePolls}) => {
         Submit
       </Button>
         </Card>
+        //</Card>
       ))}
 
-    </>
+    </div>
   );
 };
 

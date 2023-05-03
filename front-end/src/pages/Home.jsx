@@ -13,7 +13,7 @@ function Home() {
 
   return (
     <div>
-      <h1 align="center" style={{ fontSize: "3.5rem",fontWeight:"bold",color:"indianred"}}  >Welcome to Easy Vote</h1>
+      <h1 align="center" style={{ fontSize: "3.5rem",fontWeight:"bold",color:"indianred"  }}  >Welcome to Easy Vote</h1>
       <ActivePoll />
     </div>
   );

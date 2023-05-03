@@ -69,6 +69,24 @@ body {
   font-weight:bold;
  }
 
+ .voteform{
+
+ }
+
  .vote_button{
   font-family:'Courier New', Courier, monospace;
  }
+
+ .vote_card{
+   background-color: rgb(103, 194, 165) !important;
+   align-items: center;
+   padding-bottom: 50px;
+ }
+
+ .align_option{
+  align-items: flex-end;
+ }
+
+ 
+
+ 
