@@ -23,19 +23,29 @@ const VoteCount = ({ vote_count, user, getVoteCount }) => {
     console.log(selectedOptions);
   };
 
+  const decodeUrl = (url) => {
+    console.log(url);
+    return decodeURIComponent(
+      url.replace(/&#x([\dA-F]{2});/g, (match, p1) =>
+        String.fromCharCode(parseInt(p1, 16))
+      )
+    );
+  };
+
   return (
     <>
       {vote_count.voteCounts &&
         Object.values(vote_count.voteCounts).map((poll, i) => (
-          <Card key={i}>
+          <div key={i} className="container vote-container">
+            <Card className="vote_card">
             <Card.Body>
-              <Card.Title>{poll.title}</Card.Title>
+              <Card.Title className="vote-title">{poll.title}</Card.Title>
               <div>Total Vote Cast: {poll.invalidVotes.total_Vote_Cast}</div>
               <div>Total Invalid Votes: {poll.invalidVotes.total_number}</div>
               <div>
                 {poll.options.map((option) => (
-                  <div key={option.option_id}>
-                    <img src="http://placekitten.com/100/100" />
+                  <div key={option.option_id} className="option-container">
+                    <img src={decodeUrl(option.option_image_url)} />
                     <span className="d-inline">Votes: {option.votes} Percentage: {((option.votes)/(poll.invalidVotes.total_Vote_Cast))*100} %</span>
 
                     <span className="d-block">{option.option_name}</span>
@@ -44,6 +54,8 @@ const VoteCount = ({ vote_count, user, getVoteCount }) => {
               </div>
             </Card.Body>
           </Card>
+          </div>
+          
         ))}
     </>
   );

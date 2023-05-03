@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
-const LoginForm = ({login}) => {
+const LoginForm = ({login,dataFetchError}) => {
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -26,11 +26,12 @@ const LoginForm = ({login}) => {
       password: ''
     },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
+    onSubmit: (values, {resetForm}) => {
       const userData = {
         username:values.username,
         pass: values.password
       }
+      resetForm()
       login(userData,navigate);
     }
   });
@@ -78,6 +79,8 @@ const LoginForm = ({login}) => {
         ) : null}
       </div>
       {error ? <div>{error}</div> : null}
+
+      {dataFetchError.error?<div style={{ color:"#9b0f0f"}} >Username or Password is not correct</div>:null}
       <div className='text-center'>
       <div className='login_button'>
       <Button variant="secondary" type="submit">Login</Button>
@@ -90,5 +93,11 @@ const LoginForm = ({login}) => {
   );
 };
 
-export default connect(null, { login })(LoginForm);
+const mapStateToProps = (state) => ({
+  dataFetchError: state.auth.dataFetchError,
+  
+});
+
+
+export default connect(mapStateToProps, { login })(LoginForm);
 

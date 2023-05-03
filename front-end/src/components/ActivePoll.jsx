@@ -19,7 +19,7 @@ const ActivePolls = ({user,activePollTitles, getActivePolls }) => {
     console.log("Has length? "+ (activePollTitles && activePollTitles.length > 0))
   return (
     <div>
-      <h1 style={{fontWeight:"bold"}}>Active Polls  {user? "for " + user.user:""}</h1>
+      <h1 style={{fontWeight:"bold",color:"#584e4e"}}>Active Polls  {user? "for " + user.user:""}</h1>
       {activePollTitles && activePollTitles.length > 0 ? (
         <div>,
           <ListGroup>
