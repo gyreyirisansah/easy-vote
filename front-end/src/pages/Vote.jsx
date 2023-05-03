@@ -1,7 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { getActivePolls } from '../redux/poll/pollAction';
+import {castVote} from "../redux/vote/voteAction"
 
 const Vote = ({activePolls, user, getActivePolls}) => {
   const [selectedOptions, setSelectedOptions] = useState({});
@@ -12,28 +13,43 @@ const Vote = ({activePolls, user, getActivePolls}) => {
 
   }, [getActivePolls]);
 
-  const handleOptionChange = (pollId, optionId) => {
+  const handleOptionChange = (pollId, optionId,title) => {
     setSelectedOptions({
       ...selectedOptions,
       [pollId]: optionId,
+      title:title,
+      vote:optionId,
+      poll_id:pollId
     });
   };
 
+  const dispatch = useDispatch()
   const handleSubmit = () => {
     // TODO: Implement submit logic
+    const voteData = {
+      title:selectedOptions.title,
+      poll_id:selectedOptions.poll_id,
+      vote_casted:selectedOptions.vote
+    }
+    // castVote(voteData)
+    dispatch(castVote(voteData));
     console.log(selectedOptions);
   };
 
+  const decodeUrl = (url) => {
+    console.log(url)
+    return decodeURIComponent(url.replace(/&#x([\dA-F]{2});/g, (match, p1) => String.fromCharCode(parseInt(p1, 16))));
+  }
+
   return (
-    <div className='voteform'>
-      {activePolls.polls && Object.values(activePolls.polls).map((poll, i) => (
-        //<Card border="primary" style={{ width: '18rem' }} className='vote_align' >
-        <Card key={i} className='vote_card'>
+    <>
+      {activePolls.polls && Object.keys(activePolls.polls).map((poll_id, i) => (
+        <Card key={i} >
           <Card.Body>
-            <Card.Title>{poll.title}</Card.Title>
+            <Card.Title>{activePolls.polls[poll_id].title}</Card.Title>
             <Form>
               {poll.options.map(option => (
-                <div key={option.option_id}>
+                <div  key={option.option_id} >
                 <img src="http://placekitten.com/100/100" />
                 <span className='d-inline'>
                 
@@ -45,8 +61,8 @@ const Vote = ({activePolls, user, getActivePolls}) => {
                   type="checkbox"
                   id={`option-${option.option_id}`}
                   value={option.option_id}
-                  checked={selectedOptions[poll.id] === option.option_id}
-                  onChange={() => handleOptionChange(poll.id, option.option_id)}
+                  checked={selectedOptions[poll_id] === option.option_id}
+                  onChange={() => handleOptionChange(poll_id, option.option_id,activePolls.polls[poll_id].title)}
                 />
                 
                 </span>
@@ -66,10 +82,15 @@ const Vote = ({activePolls, user, getActivePolls}) => {
   );
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  getActivePolls: () => dispatch(getActivePolls()),
+  castVote: (voteData) => dispatch(castVote(voteData))
+});
+
 const mapStateToProps = (state) => ({
     user: state.auth.user,
     activePolls: state.poll.activePolls
   });
   
-export default connect(mapStateToProps, { getActivePolls })(Vote);
+export default connect(mapStateToProps, mapDispatchToProps)(Vote);
   

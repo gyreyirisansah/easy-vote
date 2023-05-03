@@ -65,6 +65,7 @@ export interface Vote {
   
   export interface InvalidVote {
     total_number: number;
+    total_Vote_Cast:number;
     details: Array<{
       vote_Id: string;
       hashed_user: string;
@@ -105,6 +106,7 @@ export const getcountVotes= async(): Promise<VoteCount>=> {
             polls[poll_id] = {
                 title: row.title,
                 invalidVotes:{
+                    total_Vote_Cast:0,
                     total_number:0,
                     details:[]
                 },
@@ -223,7 +225,7 @@ export const getInvalidVotesForOption = async(poll_id:number,option_id:number):P
 
 export const getInvalidVotes = async(poll_id:number):Promise<InvalidVote> =>{
     let db = await connect()
-    let invalid_Votes:InvalidVote ={total_number:0,details:[]};
+    let invalid_Votes:InvalidVote ={total_Vote_Cast:0,total_number:0,details:[]};
     await db.each(
         `
       SELECT
@@ -249,6 +251,7 @@ export const getInvalidVotes = async(poll_id:number):Promise<InvalidVote> =>{
         const poll_id = row.poll_id;
         const hashed_user = row.user
         const vote = row.vote;
+        invalid_Votes.total_Vote_Cast +=1
         const newMac = generateMac(poll_id,hashed_user,vote)
 
         if(!isValidVote(newMac,oldMac)){
