@@ -1,6 +1,6 @@
 import express,{Express}  from "express";
 import bodyParser from "body-parser";
-import {login,loginValidator} from "./controllers/auth/auth"
+import {isAdminUser, login,loginValidator} from "./controllers/auth/auth"
 import { addUserInfo_Cont, addUserValidator, signup} from "./controllers/user/createAccount";
 import {getActivePolls,createPolls, addPollValidator} from "./controllers/poll/poll"
 import "dotenv/config"
@@ -45,6 +45,8 @@ app.get("/api/poll/active",getActivePolls)
 
 app.post("/api/vote/cast",castVoteValidator,castVote)
 app.get("/api/vote/result", getAllVoteCount)
+
+app.get("/api/isAdmin", isAdminUser)
 
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

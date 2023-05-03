@@ -1,30 +1,38 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../constants';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from "../constants";
 
 const initialState = {
-  token: localStorage.getItem('token'),
+  token: localStorage.getItem("token"),
   isAuthenticated: null,
-  user: null
+  dataFetchError: { error: false, payload: null },
+  user: null,
 };
 
-export const authReducer =(state = initialState, action) => {
+export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      localStorage.setItem('token', action.payload.token);
+      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         ...action.payload,
-        isAuthenticated: true
+        isAuthenticated: true,
       };
     case LOGIN_FAILURE:
+      return {
+        ...state,
+        dataFetchError: {
+          error: true,
+          payload: action.payload,
+        },
+      };
     case LOGOUT:
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
       return {
         ...state,
         token: null,
         isAuthenticated: false,
-        user: null
+        user: null,
       };
     default:
       return state;
   }
-}
+};

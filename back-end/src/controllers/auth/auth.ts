@@ -49,6 +49,20 @@ export const isAuthenticatedAndAdmin = async(req:Request, res:Response, success:
     })
 }
 
+export const isAdminUser = async(req:Request, res: Response) =>{
+    const token =  req.get("Authorization")?.split(" ")[1];
+        const user:AuthenticatedUser|null = getAuthenticatedUserDetails(token||"",process.env.LOGIN_TOKEN_SECRET_KEY||"")
+        
+        let acc_id = 0
+        if (user){acc_id =  user.acc_id;}
+
+        if(await isAdmin(acc_id)){
+            res.status(200).json({isAdmin:true})
+        }else {
+            res.status(403).json({isAdmin:false})
+        }
+}
+
 export const login = async(req:Request, res:Response) =>{
     const errors = validationResult(req)
     if(!errors.isEmpty()){
