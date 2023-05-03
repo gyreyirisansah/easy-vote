@@ -50,7 +50,7 @@ const Vote = ({activePolls, user, getActivePolls}) => {
             <Form>
               {poll.options.map(option => (
                 <div  key={option.option_id} >
-                <img src="http://placekitten.com/100/100" />
+                <img src={decodeUrl(option.option_image_url)} />
                 <span className='d-inline'>
                 
                                     <Form.Check
@@ -78,7 +78,7 @@ const Vote = ({activePolls, user, getActivePolls}) => {
         //</Card>
       ))}
 
-    </div>
+    </>
   );
 };
 
