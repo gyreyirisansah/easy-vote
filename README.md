@@ -48,6 +48,10 @@ The project has two different sub projects, back-end and a front-end.
 ## Front-End
 - Navigate into tho the front-end directory and run npm install to install all packages.
 - run npm start to start the application
-
-
-
+- Log in as admin.
+- After login navigate to the endpoing /poll/add to add polls as admin.
+![Alt adding polls](Capture.PNG)
+- Add other users using the backend and the end point provided.
+- Login as a member and you should see active polls. 
+- Use the start voting button to vote for polls. 
+- Use check results tab to check for results.

@@ -328,3 +328,11 @@
 [2023-05-03T01:42:10.366] [INFO] app - login successful
 [2023-05-03T01:42:32.031] [INFO] app - login successful
 [2023-05-03T01:42:33.697] [INFO] app - login successful
+[2023-05-05T12:25:21.381] [INFO] app - login details authorized
+[2023-05-05T12:25:21.397] [INFO] app - login successful
+[2023-05-05T12:25:25.933] [INFO] app - login successful
+[2023-05-05T12:25:30.044] [INFO] app - login successful
+[2023-05-05T12:25:32.798] [INFO] app - login successful
+[2023-05-05T12:25:33.564] [INFO] app - login successful
+[2023-05-05T12:25:34.221] [INFO] app - login successful
+[2023-05-05T12:25:38.102] [INFO] app - Admin Login and access granted: 1
