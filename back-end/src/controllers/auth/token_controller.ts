@@ -1,12 +1,8 @@
+//This module handles all token assignments and validations
+
 import jwt, { JwtPayload } from "jsonwebtoken";
 
-// export const validateToken =(token:string,secret:string) =>{
-//     try{
-//         return jwt.verify(token,secret)
-//     }catch(err){
-//         return {error: true, message:err}
-//     }
-// }
+
 
 export const assignToken = (username:string,userId:number) => {
     const payload ={

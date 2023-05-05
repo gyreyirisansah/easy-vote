@@ -6,7 +6,31 @@ import log4js from "log4js"
 const logger = log4js.getLogger("app")
 const err_logger = log4js.getLogger("errors")
 
+export interface Vote {
+    title: string;
+    invalidVotes:InvalidVote;
+    options: Array<{
+      option_name: string;
+      option_id:number;
+      option_image_url: string;
+      votes: number;
+    }>;
+  };
+  
+  export interface InvalidVote {
+    total_number: number;
+    total_Vote_Cast:number;
+    details: Array<{
+      vote_Id: string;
+      hashed_user: string;
+      option_id:number;
+      option_name: string;
+    }>;
+  };
 
+export interface VoteCount {[key:string]: Vote};
+
+//Function for casting a vote
 export const vote = async (poll_id:number,vote:number,acc_id:number):Promise<void>=> {
     let db = await connect();
     const hashedUser = getEncryptedUser(acc_id,vote);
@@ -52,29 +76,7 @@ export const hasVoted = async(acc_id:number, poll_id:number): Promise<boolean> =
 }
 
 
-export interface Vote {
-    title: string;
-    invalidVotes:InvalidVote;
-    options: Array<{
-      option_name: string;
-      option_id:number;
-      option_image_url: string;
-      votes: number;
-    }>;
-  };
-  
-  export interface InvalidVote {
-    total_number: number;
-    total_Vote_Cast:number;
-    details: Array<{
-      vote_Id: string;
-      hashed_user: string;
-      option_id:number;
-      option_name: string;
-    }>;
-  };
 
-export interface VoteCount {[key:string]: Vote};
 
 
 
@@ -125,22 +127,22 @@ export const getcountVotes= async(): Promise<VoteCount>=> {
 }
 
 
-export const countVotes = async(): Promise<VoteCount> => {
+// export const countVotes = async(): Promise<VoteCount> => {
 
-    const voteCount: VoteCount = await getcountVotes();
-    const pollIds = Object.keys(voteCount);
-    for (const pollId of pollIds) {
-      const invalidVotes: InvalidVote = await getInvalidVotes(Number(pollId));
-      const options = voteCount[pollId].options;
-      for (const option of options) {
-        const optionId = option.option_id;
-        const invalidVotesForOption = invalidVotes.details.filter(iv => iv.option_id === optionId).length;
-        option.votes -= invalidVotesForOption;
-      }
-      voteCount[pollId].invalidVotes = invalidVotes;
-    }
-    return voteCount;
-  };
+//     const voteCount: VoteCount = await getcountVotes();
+//     const pollIds = Object.keys(voteCount);
+//     for (const pollId of pollIds) {
+//       const invalidVotes: InvalidVote = await getInvalidVotes(Number(pollId));
+//       const options = voteCount[pollId].options;
+//       for (const option of options) {
+//         const optionId = option.option_id;
+//         const invalidVotesForOption = invalidVotes.details.filter(iv => iv.option_id === optionId).length;
+//         option.votes -= invalidVotesForOption;
+//       }
+//       voteCount[pollId].invalidVotes = invalidVotes;
+//     }
+//     return voteCount;
+//   };
 
 
 export const countVotes_2 = async():Promise<VoteCount> => {
@@ -187,6 +189,7 @@ const getVoteCountForOption = async(poll_id:number,option_id:number): Promise<nu
     return 0
 }
 
+//Returns number of vote for an option that is not verifiable.
 export const getInvalidVotesForOption = async(poll_id:number,option_id:number):Promise<number> =>{
     let db = await connect()
     let invalid_Votes:number =0;
@@ -222,7 +225,7 @@ export const getInvalidVotesForOption = async(poll_id:number,option_id:number):P
     return invalid_Votes
 }
 
-
+// Returns votes of a poll that are not verifiable.
 export const getInvalidVotes = async(poll_id:number):Promise<InvalidVote> =>{
     let db = await connect()
     let invalid_Votes:InvalidVote ={total_Vote_Cast:0,total_number:0,details:[]};
@@ -269,28 +272,28 @@ export const getInvalidVotes = async(poll_id:number):Promise<InvalidVote> =>{
 }
 
 
-const getEncryptedUser = (acc_id:number,vote:number) =>{
+const getEncryptedUser = (acc_id:number,vote:number):string =>{
     const salt = crypto.randomBytes(16).toString("hex");
     const data = acc_id+salt+vote
     return crypto.createHash("sha256").update(data).digest('hex');
 }
 
-const generateMac = (poll_id:number,hashed_user:string, vote:number) =>{
+const generateMac = (poll_id:number,hashed_user:string, vote:number):string =>{
     const hmac_key = process.env.LOGIN_TOKEN_SECRET_KEY||""
     return crypto.createHmac("sha256",hmac_key+poll_id)
         .update(hashed_user+vote)
         .digest("hex");
 }
 
-const isValidVote = (newMac:string, oldMac:string) =>{
+const isValidVote = (newMac:string, oldMac:string):boolean =>{
     return newMac==oldMac
 }
 
-const getSecretKey = (key:string) =>{
+const getSecretKey = (key:string):Buffer =>{
     return crypto.scryptSync(key, "salt", 24);
 }
 
-const encryptMessage = (message:string) =>{
+const encryptMessage = (message:string):string =>{
     const initial_vector = crypto.randomBytes(16);
     const cipher = crypto.createCipheriv(process.env.ALGORITHM||"", getSecretKey(process.env.SECURITY_KEY||""),initial_vector);
     const encryptedMesage = cipher.update(message, "utf8", "hex");
@@ -301,7 +304,7 @@ const encryptMessage = (message:string) =>{
     return finalEncryptedMsg
 }
 
-const decryptMessage = (encryptedMessage:string) =>{
+const decryptMessage = (encryptedMessage:string):string =>{
     try{
         const [encryptedMsg, initial_vector] = encryptedMessage.split("|");
         if (!initial_vector) throw new Error("Initial Vector not found");

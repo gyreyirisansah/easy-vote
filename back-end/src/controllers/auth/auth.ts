@@ -1,3 +1,5 @@
+/*This module handles user authentication stuffs */
+
 import {Request, Response} from 'express'
 import {validateToken, assignToken, getAuthenticatedUserDetails,AuthenticatedUser} from "./token_controller"
 
@@ -23,7 +25,7 @@ export const isAuthenticated = async(req:Request,res:Response, success:Function)
     const result = validateToken(token||"", process.env.LOGIN_TOKEN_SECRET_KEY||"")
     if(!result){
         //TODO: Log error to log file
-        err_logger.error("login unauthorized");
+        err_logger.error("unauthorized access attempt");
         res.status(403).json({message:"Unauthorized"})
     }else{
         logger.info("login successful");
@@ -41,9 +43,11 @@ export const isAuthenticatedAndAdmin = async(req:Request, res:Response, success:
 
         if(await isAdmin(acc_id)){
             //TODO login as an admin logger
+            logger.info("Admin Login and access granted: "+ acc_id);
             return success()
         }else{
             //TOD add acecessing to admin failed logger
+            err_logger.error("Unauthorze access attempt by: "+acc_id);
             res.status(403).json({message:"Unauthorized"})
         }
     })
@@ -57,8 +61,10 @@ export const isAdminUser = async(req:Request, res: Response) =>{
         if (user){acc_id =  user.acc_id;}
 
         if(await isAdmin(acc_id)){
+            logger.info("Admin Login and access granted: "+ acc_id);
             res.status(200).json({isAdmin:true})
         }else {
+            err_logger.error("Unauthorze access attempt by: "+acc_id);
             res.status(403).json({isAdmin:false})
         }
 }

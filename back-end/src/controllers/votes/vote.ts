@@ -2,7 +2,7 @@ import { matchedData, validationResult } from "express-validator";
 import { Request, Response } from "express";
 import { isAuthenticated } from "../auth/auth";
 import { AuthenticatedUser, getAuthenticatedUserDetails } from "../auth/token_controller";
-import { countVotes, countVotes_2, hasVoted, vote,VoteCount } from "../../db/votes/vote";
+import {countVotes_2, hasVoted, vote,VoteCount } from "../../db/votes/vote";
 import log4js from "log4js"
 import { baseAlphaNumeric, baseIdValidator } from "../utils/base_validators";
 const logger = log4js.getLogger("app")
@@ -18,6 +18,7 @@ export const castVoteValidator =[
 export const castVote = async(req:Request, res:Response) => {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
+        err_logger.error("Error 400, Bad inputs entered during vote cast");
         res.status(400).json(errors.array());
     }else{
         await isAuthenticated(req,res,async() =>{
@@ -30,10 +31,12 @@ export const castVote = async(req:Request, res:Response) => {
            
             try{
                 if(await hasVoted(acc_id,poll_id)){
-                    res.status(400).json({message:"User has already voted for this poll"});
+                    err_logger.error("Second vote attempt: "+acc_id+" for poll: "+poll_id);
+                    res.status(403).json({message:"User has already voted for this poll"});
                 }else{
                     await vote(poll_id,vote_casted,acc_id)
                     //TODO Log vote casted successful message.
+                    logger.info("User "+acc_id+" casted vote successfully");
                     res.status(201).json({message:"Vote casted successfully for "+title})
                 }
             }catch(err){
@@ -41,7 +44,7 @@ export const castVote = async(req:Request, res:Response) => {
                 err_logger.error("Error 500 at new user details entry");
                 res.status(500).json({"error":true,"message":"An error occured while creating poll "+title})
             }
-            })
+        })
         
     }    
 }

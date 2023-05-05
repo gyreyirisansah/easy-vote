@@ -1,5 +1,6 @@
 /*
     We adapted some codes form dead-drop user implementation.
+    This module mimics an authentication system as managed by the entire institution for testing. 
 */
 import { connect } from "../db"
 

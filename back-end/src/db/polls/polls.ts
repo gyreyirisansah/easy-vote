@@ -1,6 +1,17 @@
 import { connect } from "../db"
 import { hasVoted } from "../votes/vote";
 
+export interface Option {
+    option_id: number;
+    option_name: string;
+    option_image_url: string;
+};
+
+export interface Poll {
+    title: string;
+    options: Option[];
+};
+export interface PollResult {[key:string]:Poll}
 
 export const addPolls = async (title:string):Promise<number>=> {
     let db = await connect();
@@ -27,17 +38,7 @@ export const addOptions = async (poll_id:number,option_name:string,option_image_
     );
 }
 
-export interface Option {
-    option_id: number;
-    option_name: string;
-    option_image_url: string;
-};
 
-export interface Poll {
-    title: string;
-    options: Option[];
-};
-export interface PollResult {[key:string]:Poll}
 
 export const getPolls = async (acc_id:number): Promise<PollResult> => {
 

@@ -1,5 +1,7 @@
 import { connect } from "../db"
 
+// This modulle allowed us to insert user information for testing.
+
 export const addUserInfo = async (acc_id:number, firstname:string,lastname:string,
     email_address:string,phone_no:string,address:string):Promise<void>=> {
     let db = await connect();

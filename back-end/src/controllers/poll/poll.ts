@@ -23,9 +23,10 @@ export const addPollValidator =[
 
 
 
-export const createPolls = async(req:Request, res:Response) => {
+export const createPolls = async(req:Request, res:Response)=> {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
+        err_logger.error("Error 400, Bad inputs entered during poll creation");
         res.status(400).json(errors.array());
     }else{
         await isAuthenticatedAndAdmin(req,res,async() =>{
