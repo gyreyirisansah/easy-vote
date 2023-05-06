@@ -71,3 +71,50 @@
 [2023-04-30T22:33:33.307] [ERROR] errors - login unauthorized
 [2023-04-30T23:03:11.303] [ERROR] errors - login unauthorized
 [2023-04-30T23:03:28.544] [ERROR] errors - login unauthorized
+[2023-05-05T14:22:20.376] [ERROR] errors - Error 400, Bad inputs entered during vote cast
+[2023-05-05T14:28:58.652] [ERROR] errors - unauthorized access attempt
+[2023-05-05T14:34:11.381] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:20:27.720] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:25:03.171] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:28:01.071] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:30:31.325] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:31:35.578] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:31:41.588] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:33:37.848] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:34:32.827] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:40:22.309] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:41:46.623] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:42:49.183] [ERROR] errors - unauthorized access attempt
+[2023-05-05T15:43:56.478] [ERROR] errors - unauthorized access attempt
+[2023-05-05T16:09:37.932] [ERROR] errors - unauthorized access attempt
+[2023-05-05T16:42:04.257] [ERROR] errors - unauthorized access attempt
+[2023-05-05T16:43:22.357] [ERROR] errors - unauthorized access attempt
+[2023-05-05T17:00:56.929] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T17:20:43.539] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T17:27:23.575] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T17:28:23.833] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T17:29:00.687] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T17:30:45.551] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T17:31:19.653] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T17:31:54.059] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T17:59:36.562] [ERROR] errors - unauthorized access attempt
+[2023-05-05T18:01:38.858] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:04:40.292] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:05:56.130] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:13:00.871] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:13:52.256] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:15:26.589] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:17:19.123] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:19:04.532] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:19:57.575] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:19:57.648] [ERROR] errors - Error 400, Bad inputs entered during vote cast
+[2023-05-05T18:20:56.543] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:20:56.610] [ERROR] errors - Error 400, Bad inputs entered during vote cast
+[2023-05-05T18:20:56.712] [ERROR] errors - Second vote attempt: 1 for poll: 1
+[2023-05-05T18:29:42.652] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:29:42.662] [ERROR] errors - Unauthorze access attempt by: 1
+[2023-05-05T18:29:42.682] [ERROR] errors - Error 400, Bad inputs entered during vote cast
+[2023-05-05T18:29:42.775] [ERROR] errors - Second vote attempt: 1 for poll: 1
+[2023-05-05T18:37:03.920] [ERROR] errors - Error 400, Bad inputs entered during poll creation
+[2023-05-05T18:37:03.952] [ERROR] errors - Error 400, Bad inputs entered during vote cast
+[2023-05-05T18:37:04.056] [ERROR] errors - Second vote attempt: 1 for poll: 1

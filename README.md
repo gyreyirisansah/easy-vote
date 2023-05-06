@@ -42,7 +42,7 @@ The project has two different sub projects, back-end and a front-end.
 ## Backend
 - Navigate into the backend-directory and run npm install to install all node packages.  
 - Use the command npm run dev to start the application.
-- Create an account using the endpoint "api/signup using postman or any alternative
+- Create an account using the endpoint "api/signup using postman or any alternative (req body should include username and pass)
 - Use sqlite studio or any alternative to manually include an admin by inserting the the acc_id of the user. Note: This is to allow testing and not intended for production. 
 
 ## Front-End
@@ -55,3 +55,10 @@ The project has two different sub projects, back-end and a front-end.
 - Login as a member and you should see active polls. 
 - Use the start voting button to vote for polls. 
 - Use check results tab to check for results.
+
+
+# Testing
+- To run test on the applcation provide a username and pass in the test files.
+- Ensure the user details used exist in the Db.
+- Also ensure that the you add assign an admin and run as an admin.
+- If runing the test for the second time ensure to change the poll title. App does not allow polls with the exact same name.

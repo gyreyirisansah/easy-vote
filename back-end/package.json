@@ -1,4 +1,7 @@
 {
+  "name": "easy-vote",
+  "version": "1.0.0",
+  "description": "Easy vote API",
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.13",
@@ -21,14 +24,23 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "test": "mocha --recursive src/test"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.10",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
     "concurrently": "^7.6.0",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
+  },
+  "mocha":{
+    "require": "ts-node/register",
+    "spec": "src/test/**/*.ts"
   }
 }
