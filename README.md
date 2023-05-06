@@ -62,3 +62,6 @@ The project has two different sub projects, back-end and a front-end.
 - Ensure the user details used exist in the Db.
 - Also ensure that the you add assign an admin and run as an admin.
 - If runing the test for the second time ensure to change the poll title. App does not allow polls with the exact same name.
+
+# Final Note:
+We have committed the .evn file as part of this project for testing purposes. 
